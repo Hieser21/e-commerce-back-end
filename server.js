@@ -6,7 +6,7 @@ const users = require('./routes/users')
 const products = require('./routes/products')
 const orders = require('./routes/orders')
 const contacts = require('./routes/contacts')
-
+const app = express()
 
 const connectDB = async () => {
   try {
