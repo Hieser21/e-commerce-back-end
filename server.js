@@ -26,6 +26,10 @@ app.use('/products', products)
 app.use('/orders', orders)
 app.use('/contacts', contacts)
 
+app.get('/uploads', function(req, res){
+console.log(req.body)
+});
+
 connectDB().then(() => {
     app.listen(9000, () => {
         console.log("listening for requests");
