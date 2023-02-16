@@ -27,7 +27,7 @@ app.use('/orders', orders)
 app.use('/contacts', contacts)
 
 connectDB().then(() => {
-    app.listen(PORT, () => {
+    app.listen(9000, () => {
         console.log("listening for requests");
     })
 })
