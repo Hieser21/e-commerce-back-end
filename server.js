@@ -26,7 +26,7 @@ app.use('/products', products)
 app.use('/orders', orders)
 app.use('/contacts', contacts)
 
-app.get('/uploads', function(req, res){
+app.get('/uploads/:name', function(req, res){
 console.log(req.body)
 });
 
