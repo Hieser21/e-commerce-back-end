@@ -4,7 +4,6 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
     "all": "concurrently \"npm start\" \"cd ../client && npm start\" \"cd ../admin && npm start\""
   },
   "repository": {
