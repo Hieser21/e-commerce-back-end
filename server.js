@@ -20,16 +20,16 @@ const connectDB = async () => {
 
 app.use(express.json())
 app.use(cors());
-app.use('/uploads', express.static("uploads"))
+// app.use('/uploads', express.static("uploads"))
 app.use('/users', users)
 app.use('/products', products)
 app.use('/orders', orders)
 app.use('/contacts', contacts)
 
-app.get('/uploads/:name', function(req, res){
-console.log(req.body)
+app.get('/uploads', function (req, res) {
+    // res.sendFile(filepath);
+  console.log(req.body)
 });
-
 connectDB().then(() => {
     app.listen(9000, () => {
         console.log("listening for requests");
