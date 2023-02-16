@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors');
@@ -7,7 +8,7 @@ const orders = require('./routes/orders')
 const contacts = require('./routes/contacts')
 
 
-let mongodbURL = process.env.mongodbURL || 'mongodb://localhost/e-commerce';
+let mongodbURL = process.env.MONGO || 'mongodb://localhost/e-commerce';
 
 const url = mongodbURL
 

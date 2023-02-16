@@ -1,10 +1,11 @@
+require('dotenv').config()
 const express = require('express')
 const router = express.Router()
 const orders = require('../models/order_model')
 const Stripe = require('stripe')
 
 
-let stripeKey = process.env.stripeKey
+let stripeKey = process.env.STRIPE
 
 const stripe = new Stripe(stripeKey)
 
