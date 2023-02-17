@@ -2,11 +2,11 @@ const express = require('express')
 const router = express.Router()
 const products = require('../models/product_model')
 const multer = require('multer')
-const fs = require('@cyclic.sh/s3fs') 
+
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './uploads/')
+        cb(null, './tmp/')
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname)
@@ -38,7 +38,7 @@ router.post('/addproduct', upload.single('image'), (req, res) => {
             res.json("err" + err)
         })
 
-  fs.writeFile(`uploads/${req.file}`)
+  
     
 })
 
