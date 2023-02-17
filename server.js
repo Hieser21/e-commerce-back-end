@@ -20,7 +20,7 @@ const connectDB = async () => {
 
 app.use(express.json())
 app.use(cors());
-app.use( express.static("uploads"))
+app.use('/uploads', express.static("uploads"))
 app.use('/users', users)
 app.use('/products', products)
 app.use('/orders', orders)
