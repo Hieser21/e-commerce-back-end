@@ -19,7 +19,6 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
-    "cyclic.sh/s3fs": "^1.2.8"
     "dotenv": "^16.0.3",
     "express": "^4.17.1",
     "mongoose": "^5.11.2",
