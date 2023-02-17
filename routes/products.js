@@ -38,7 +38,8 @@ router.post('/addproduct', upload.single('image'), (req, res) => {
             res.json("err" + err)
         })
 
-
+  
+    
 })
 
 
