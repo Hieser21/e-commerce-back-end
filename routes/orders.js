@@ -1,8 +1,9 @@
-require('dotenv').config()
-const express = require('express')
+import dotenv from 'dotenv'
+dotenv.config()
+import express from 'express'
 const router = express.Router()
-const orders = require('../models/order_model')
-const Stripe = require('stripe')
+import orders from '../models/order_model.js'
+import Stripe from 'stripe'
 
 
 let stripeKey = process.env.STRIPE
@@ -84,4 +85,4 @@ router.put('/orderstatus', (req, res) => {
 
 })
 
-module.exports = router
+export default router

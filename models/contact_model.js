@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const contactSchema = new mongoose.Schema({
     name: {
@@ -24,4 +24,4 @@ const contactSchema = new mongoose.Schema({
         default: 'Pending'
     },
 })
-module.exports = mongoose.model('contact', contactSchema)
+export default mongoose.model('contact', contactSchema)

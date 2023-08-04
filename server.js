@@ -1,11 +1,12 @@
-require('dotenv').config()
-const express = require('express')
-const mongoose = require('mongoose')
-const cors = require('cors');
-const users = require('./routes/users')
-const products = require('./routes/products')
-const orders = require('./routes/orders')
-const contacts = require('./routes/contacts')
+import dotenv from 'dotenv'
+dotenv.config()
+import express from 'express'
+import mongoose from 'mongoose'
+import cors from 'cors'
+import users from './routes/users.js'
+import products from './routes/products.js'
+import orders from './routes/orders.js'
+import contacts from './routes/contacts.js'
 const app = express()
 
 const connectDB = async () => {

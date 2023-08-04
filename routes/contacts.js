@@ -1,6 +1,6 @@
-const express = require('express')
+import express from 'express'
 const router = express.Router()
-const contact = require('../models/contact_model')
+import contact from '../models/contact_model.js'
 
 
 router.put('/addmessage', (req, res) => {
@@ -50,4 +50,4 @@ router.put('/messagestatus', (req, res) => {
 
 
 
-module.exports = router
+export default router

@@ -1,9 +1,14 @@
-const express = require('express')
+import express from 'express'
 const router = express.Router()
-const products = require('../models/product_model')
-const multer = require('multer')
-
-
+import products from '../models/product_model.js'
+import fs from 'fs'
+import multer from 'multer'
+import chokidar from 'chokidar'
+import UploadProvider from './upload-provider.js'
+const watcher = chokidar.watch('../uploads', {
+    persistent: true,
+    awaitWriteFinish: true,
+})
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './uploads/')
@@ -19,6 +24,9 @@ const upload = multer({
     }
 })
 
+watcher
+  .on('add', path => { UploadProvider.upload(path, path)})
+  .on('unlink', path => { UploadProvider.delete(path)})
 
 router.post('/addproduct', upload.single('image'), (req, res) => {
 
@@ -29,7 +37,7 @@ router.post('/addproduct', upload.single('image'), (req, res) => {
         image: req.file.path,
         type: req.body.type
     })
-
+    
     product.save()
         .then(savedproduct => {
             res.json(savedproduct)
@@ -59,10 +67,13 @@ router.get('/getproducts', (req, res) => {
 router.post('/deleteproduct', (req, res) => {
 
     const { productname } = req.body;
-
+    products.find({productname: productname}).then(docs => {
+        fs.unlink(docs.image)
+    })
     products.findOneAndDelete({ productname: productname })
         .then(prds => {
             res.json("Done")
+            
         })
         .catch(err => {
             res.json("err" + err)
@@ -70,4 +81,4 @@ router.post('/deleteproduct', (req, res) => {
 
 })
 
-module.exports = router
+export default router

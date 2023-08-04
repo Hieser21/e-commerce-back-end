@@ -1,8 +1,8 @@
-const express = require('express')
+import express from 'express';
 const router = express.Router()
-const users = require('../models/user_model')
-const admin = require('../models/admin_model')
-const bcrypt = require('bcryptjs');
+import users from '../models/user_model.js'
+import admin from '../models/admin_model.js'
+import bcrypt from 'bcryptjs/dist/bcrypt.js';
 
 router.post('/register', (req, res) => {
     const { email, name, password } = req.body;
@@ -99,4 +99,4 @@ router.post('/adminLogin', (req, res) => {
             res.json("error" + err)
         })
 })
-module.exports = router
+export default router

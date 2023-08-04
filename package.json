@@ -2,7 +2,8 @@
   "name": "e-commerce-back-end",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "server.cjs",
+  "type": "module",
   "scripts": {
     "all": "concurrently \"npm start\" \"cd ../client && npm start\" \"cd ../admin && npm start\""
   },
@@ -18,9 +19,11 @@
   "homepage": "https://github.com/sathvik987/e-commerce-back-end#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "chokidar": "^3.5.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.17.1",
+    "firebase-admin": "^11.10.1",
     "mongoose": "^5.11.2",
     "multer": "^1.4.2",
     "stripe": "^8.129.0"
