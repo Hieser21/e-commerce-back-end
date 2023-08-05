@@ -4,18 +4,10 @@ import products from '../models/product_model.js'
 import fs from 'fs'
 import multer from 'multer'
 import chokidar from 'chokidar'
-import path from 'path'
-import { fileURLToPath } from 'url';
+
 import UploadProvider from './upload-provider.js'
 const provider = new UploadProvider()
-const __filename = fileURLToPath(import.meta.url);
 
-const __dirname = path.dirname(__filename);
-const watcher = chokidar.watch('uploads', {
-    persistent: true,
-    awaitWriteFinish: true,
-    cwd: __dirname
-})
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './uploads/')
@@ -31,11 +23,7 @@ const upload = multer({
     }
 })
 
-watcher
-  .on('add', path => {console.log(path);
-                      provider.upload(path, path)})
-  .on('unlink', path => { console.log(path);
-                         provider.delete(path)})
+
 
 router.post('/addproduct', upload.single('image'), (req, res) => {
 
