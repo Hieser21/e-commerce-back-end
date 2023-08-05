@@ -79,12 +79,12 @@ router.post('/adminregister', (req, res) => {
 
 
 router.post('/adminLogin', (req, res) => {
-    const { userName, password } = req.body;
-    if (!userName || !password) {
+    const { username, password } = req.body;
+    if (!username || !password) {
         return res.status(400).json('incorrect form submission');
     }
 
-    admin.findOne({ userName: userName })
+    admin.findOne({ userName: username })
         .then(user => {
             const isValid = bcrypt.compareSync(password, user.password)
             if (isValid) {
