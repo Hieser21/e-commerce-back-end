@@ -9,8 +9,7 @@ const app = admin.initializeApp({
 
 const storage = getStorage(app)
 export default class UploadProvider {
- storage
- 
+
   // * Fixed this method because original does rename instead of move and it doesn't work with docker volume
    async upload(file, key){
     return storage.bucket(this.bucket).upload(file, {
