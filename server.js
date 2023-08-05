@@ -9,6 +9,8 @@ import orders from './routes/orders.js'
 import contacts from './routes/contacts.js'
 import chokidar from 'chokidar'
 const app = express()
+import UploadProvider from './routes/upload-provider.js'
+const provider = new UploadProvider()
 import path from 'path'
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
