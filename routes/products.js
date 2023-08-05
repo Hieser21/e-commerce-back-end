@@ -64,12 +64,9 @@ router.get('/getproducts', (req, res) => {
 
 router.post('/deleteproduct', (req, res) => {
 
-    const { productname } = req.body;
-    products.find({productname: productname}).then(docs => {
-        fs.unlink(docs.image)
-    })
     products.findOneAndDelete({ productname: productname })
         .then(prds => {
+            fs.unlink(prds.image);
             res.json("Done")
             
         })
