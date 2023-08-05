@@ -100,5 +100,5 @@ router.post('/adminLogin', (req, res) => {
         .catch(err => {
             res.json("error " + err)
         })
-})
+
 export default router
