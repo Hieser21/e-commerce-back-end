@@ -83,12 +83,15 @@ router.post('/adminLogin', (req, res) => {
     if (!username || !password) {
         return res.status(400).json('incorrect form submission');
     }    
-        const pwHash = bcrypt.hash(password);
-          const user = await usermodel.findOne({ userName: username, password: pwHash }).exec();
-                    if (user){
-                user = user.toObject()
-                delete user.password;
-                res.json(user)
+      const validate = async (req, username, password, reply) => {
+  const pwHash = await bcrypt.hash(password);
+  const user = await users.findOne({userName: username, password: pwHash }).exec();
+          return user
+      }
+                    if (validate){
+                validate = validate.toObject()
+                delete validate.password;
+                res.json(validate)
                     }else {
                 res.status(400).json('worng credentials')
             }
