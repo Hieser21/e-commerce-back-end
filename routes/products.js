@@ -11,11 +11,10 @@ const provider = new UploadProvider()
 const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__filename);
-const fileDir = path.join(__dirname, 'uploads/')
-const watcher = chokidar.watch('file', {
+const watcher = chokidar.watch('uploads', {
     persistent: true,
     awaitWriteFinish: true,
-    cwd: fileDir
+    cwd: __dirname
 })
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
