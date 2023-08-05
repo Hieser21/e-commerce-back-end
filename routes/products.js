@@ -5,8 +5,12 @@ import fs from 'fs'
 import multer from 'multer'
 import chokidar from 'chokidar'
 import path from 'path'
+import { fileURLToPath } from 'url';
 import UploadProvider from './upload-provider.js'
 const provider = new UploadProvider()
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
 const fileDir = path.join(__dirname, 'uploads/')
 const watcher = chokidar.watch('file', {
     persistent: true,
