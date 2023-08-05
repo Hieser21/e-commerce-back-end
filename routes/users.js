@@ -83,7 +83,7 @@ router.post('/adminLogin', (req, res) => {
     if (!username || !password) {
         return res.status(400).json('incorrect form submission');
     }    
-        const pwHash = await bcrypt.hash(password);
+        const pwHash = bcrypt.hash(password);
           const user = await usermodel.findOne({ userName: username, password: pwHash }).exec();
                     if (user){
                 user = user.toObject()
