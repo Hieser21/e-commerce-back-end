@@ -83,6 +83,7 @@ router.post('/adminLogin', (req, res) => {
     if (!username || !password) {
         return res.status(400).json('incorrect form submission');
     }    
+    console.log(req.body)
       const validate = async (req, username, password, reply) => {
   const pwHash = await bcrypt.hash(password);
   const user = await users.findOne({userName: username, password: pwHash }).exec();
