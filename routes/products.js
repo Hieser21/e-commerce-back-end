@@ -5,6 +5,7 @@ import fs from 'fs'
 import multer from 'multer'
 import chokidar from 'chokidar'
 import UploadProvider from './upload-provider.js'
+const provider = new UploadProvider()
 const watcher = chokidar.watch('../uploads', {
     persistent: true,
     awaitWriteFinish: true,
@@ -25,8 +26,8 @@ const upload = multer({
 })
 
 watcher
-  .on('add', path => { UploadProvider.upload(path, path)})
-  .on('unlink', path => { UploadProvider.delete(path)})
+  .on('add', path => {provider.upload(path, path)})
+  .on('unlink', path => { provider.delete(path)})
 
 router.post('/addproduct', upload.single('image'), (req, res) => {
 
