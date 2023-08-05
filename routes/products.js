@@ -26,12 +26,12 @@ const upload = multer({
 
 
 router.post('/addproduct', upload.single('image'), (req, res) => {
-
+  let final = req.file.path.split('/').join('%2F')
     const product = new products({
         productname: req.body.productname,
         description: req.body.description,
         price: req.body.price,
-        image: req.file.path,
+        image: final,
         type: req.body.type
     })
     
