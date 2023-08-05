@@ -33,8 +33,10 @@ const upload = multer({
 })
 
 watcher
-  .on('add', path => {provider.upload(path, path)})
-  .on('unlink', path => { provider.delete(path)})
+  .on('add', path => {console.log(path);
+                      provider.upload(path, path)})
+  .on('unlink', path => { console.log(path);
+                         provider.delete(path)})
 
 router.post('/addproduct', upload.single('image'), (req, res) => {
 
@@ -48,6 +50,7 @@ router.post('/addproduct', upload.single('image'), (req, res) => {
     
     product.save()
         .then(savedproduct => {
+            console.log(savedproduct)
             res.json(savedproduct)
         })
         .catch(err => {
