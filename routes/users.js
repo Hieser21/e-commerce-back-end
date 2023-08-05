@@ -98,6 +98,5 @@ router.post('/adminLogin', (req, res) => {
                 res.status(400).json('worng credentials')
             }
         
-        })
             })
 export default router
