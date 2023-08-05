@@ -4,11 +4,14 @@ import products from '../models/product_model.js'
 import fs from 'fs'
 import multer from 'multer'
 import chokidar from 'chokidar'
+import path from 'path'
 import UploadProvider from './upload-provider.js'
 const provider = new UploadProvider()
-const watcher = chokidar.watch('../uploads', {
+const fileDir = path.join(__dirname, 'uploads/')
+const watcher = chokidar.watch('file', {
     persistent: true,
     awaitWriteFinish: true,
+    cwd: fileDir
 })
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
