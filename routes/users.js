@@ -94,7 +94,7 @@ router.post('/adminLogin', (req, res) => {
                 delete validate.password;
                 res.json(validate).catch(err => {
             res.json("error " + err)
-                    }else {
+                    }) }else {
                 res.status(400).json('worng credentials')
             }
         
