@@ -92,13 +92,12 @@ router.post('/adminLogin', (req, res) => {
                     if (validate){
                 validate = validate.toObject()
                 delete validate.password;
-                res.json(validate)
+                res.json(validate).catch(err => {
+            res.json("error " + err)
                     }else {
                 res.status(400).json('worng credentials')
             }
+        
         })
-        .catch(err => {
-            res.json("error " + err)
-        })
-
+            })
 export default router
