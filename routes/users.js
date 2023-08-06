@@ -88,11 +88,8 @@ router.post('/adminLogin', (req, res) => {
         try{
   const user = await admin.findOne({userName: username},{}, function(doc){ return doc})
             console.log(user)
-           let validate =  bcrypt.compareSync(password, user.password)
-           console.log(user)
-           if (validate) {
             return user.toObject()
-           } 
+           
               }
             catch (error) {
                 console.log(error)
