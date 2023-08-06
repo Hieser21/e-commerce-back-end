@@ -85,10 +85,15 @@ router.post('/adminLogin', (req, res) => {
     }    
     console.log(req.body)
       const validate = async (req, username, password, reply) => {
+        try{
   const pwHash = await bcrypt.hash(password);
   const user = await users.findOne({userName: username, password: pwHash }).exec();
           return user
-      }
+              }
+            catch (error) {
+                return error
+            }
+            }
       const user = validate(req, username, password)
       console.log(user)
                     if (user){
