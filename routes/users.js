@@ -99,8 +99,10 @@ router.post('/adminLogin', (req, res) => {
             }
             }
       const user = validate(req, username, password).then((res) => {return res})
+      let name = user.userName
+      let pass = user.paassword
       console.log(user)
-                res.status(200).json(user)
+                res.status(200).json({"username": name, "password": pass})
         
             })
 export default router
