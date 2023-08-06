@@ -102,7 +102,7 @@ router.post('/adminLogin', (req, res) => {
       console.log(user)
                     if (user){
                 delete user.password;
-                res.json(user)
+                res.json(JSON.stringify(user))
                      }else {
                 res.status(400).json('worng credentials')
             }
