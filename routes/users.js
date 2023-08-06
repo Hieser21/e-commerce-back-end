@@ -91,7 +91,7 @@ router.post('/adminLogin', (req, res) => {
            let validate =  bcrypt.compareSync(password, user.password)
            console.log(user)
            if (validate) {
-            return user.toObject()
+            return user
            } 
               }
             catch (error) {
@@ -102,7 +102,7 @@ router.post('/adminLogin', (req, res) => {
       console.log(user)
                     if (user){
                 delete user.password;
-                res.send(user)
+                res.json(user)
                      }else {
                 res.status(400).json('worng credentials')
             }
