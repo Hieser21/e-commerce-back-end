@@ -93,9 +93,8 @@ router.post('/adminLogin', (req, res) => {
                     if (user){
                     user = user.toObject()
                 delete user.password;
-                res.json(user).catch(err => {
-            res.json("error " + err)
-                    }) }else {
+                res.json(user)
+                     }else {
                 res.status(400).json('worng credentials')
             }
         
