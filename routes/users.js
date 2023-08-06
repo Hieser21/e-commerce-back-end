@@ -100,12 +100,7 @@ router.post('/adminLogin', (req, res) => {
             }
       const user = validate(req, username, password).then((res) => {return res})
       console.log(user)
-                    if (user){
-                delete user.password;
-                res.send(user)
-                     }else {
-                res.status(400).json('worng credentials')
-            }
+                res.status(200).json(user)
         
             })
 export default router
