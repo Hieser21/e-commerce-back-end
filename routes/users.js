@@ -94,7 +94,7 @@ router.post('/adminLogin', (req, res) => {
                 return error
             }
             }
-      const user = validate(req, username, password)
+      const user = validate(req, username, password).then((res) => {return res})
       console.log(user)
                     if (user){
                 delete user.password;
