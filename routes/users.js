@@ -89,10 +89,11 @@ router.post('/adminLogin', (req, res) => {
   const user = await users.findOne({userName: username, password: pwHash }).exec();
           return user
       }
-                    if (validate){
-                validate = validate.toObject()
-                delete validate.password;
-                res.json(validate).catch(err => {
+      const user = validate(req, username, password)
+                    if (user){
+                
+                delete user.password;
+                res.json(user).catch(err => {
             res.json("error " + err)
                     }) }else {
                 res.status(400).json('worng credentials')
