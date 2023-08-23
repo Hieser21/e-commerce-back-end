@@ -79,7 +79,8 @@ router.post('/adminregister', (req, res) => {
 
 
 router.post('/adminLogin', (req, res) => {
-    const { username, password } = req.body;
+    const username = req.body.username;
+    const password = req.body.password;
     if (!username || !password) {
         return res.status(400).json('incorrect form submission');
     }    
