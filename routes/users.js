@@ -79,30 +79,24 @@ router.post('/adminregister', (req, res) => {
 
 
 router.post('/adminLogin', (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
+   const { username, password } = req.body;
     if (!username || !password) {
         return res.status(400).json('incorrect form submission');
-    }    
-    console.log(req.body)
-      const validate = async (req, username, password, reply) => {
-        try{
-  const user = await admin.findOne({userName: username}, function(doc){ return doc})
-            console.log(user)
-           let validate =  bcrypt.compareSync(password, user.password)
-           console.log(user)
-           if (validate) {
-            return user
-           } 
-              }
-            catch (error) {
-                console.log(error)
+    }
+
+    admin.findOne({ userName: username })
+        .then(user => {
+            const isValid = bcrypt.compareSync(password, user.password)
+            if (isValid) {
+                user = user.toObject()
+                delete user.password;
+                res.json(user)
+            } else {
+                res.status(400).json('worng credentials')
             }
-            }
-      const user = validate(req, username, password).then((res) => {return res})
-      let name = user.userName
-      let pass = user.paassword
-                res.status(200).json({username: name, password: pass})
-        
+        })
+        .catch(err => {
+            res.json("error" + err)
+        })
             })
 export default router
