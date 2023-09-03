@@ -80,7 +80,7 @@ router.post('/adminregister', (req, res) => {
 
 router.post('/adminLogin', (req, res) => {
    const { username, password } = req.body;
-    if (!username || !password) {
+    if (username == '' || password == '') {
         return res.status(400).json('incorrect form submission');
     }
 
@@ -90,6 +90,7 @@ router.post('/adminLogin', (req, res) => {
             if (isValid) {
                 user = user.toObject()
                 delete user.password;
+                console.log(user)
                 res.json(user)
             } else {
                 res.status(400).json('worng credentials')
