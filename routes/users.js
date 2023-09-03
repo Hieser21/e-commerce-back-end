@@ -86,18 +86,17 @@ router.post('/adminLogin', (req, res) => {
 
     admin.findOne({ userName: username })
         .then(user => {
+            if (user.password == null){res.status(400).json('worng credentials')}
             const isValid = bcrypt.compareSync(password, user.password)
             if (isValid) {
                 user = user.toObject()
                 delete user.password;
                 console.log(user)
                 res.json(user)
-            } else {
-                res.status(400).json('worng credentials')
-            }
+            } 
         })
         .catch(err => {
-            res.json("error" + err)
+            res.json("error " + err)
         })
             })
 export default router
